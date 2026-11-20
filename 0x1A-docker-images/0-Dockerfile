@@ -1,0 +1,15 @@
+# Task 0: Dockerfile for docs-api
+# Goal: build the service from app/ and requirements.txt (read the task on the project page).
+
+FROM python:3.12-slim
+WORKDIR /app
+ENV PYTHONUNBUFFERED=1
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY app/ ./app/
+
+EXPOSE 8000
+
+CMD ["python", "app/main.py"]
